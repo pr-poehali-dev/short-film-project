@@ -3,34 +3,38 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
-const productFeatures = [
+const beautyFeatures = [
   {
     id: 1,
-    title: 'Аналитика в реальном времени',
-    description: 'Мгновенный доступ к ключевым метрикам и показателям эффективности вашего бизнеса',
-    icon: 'TrendingUp',
-    color: 'from-purple-500 to-blue-500'
+    title: 'Глубокое увлажнение',
+    description: 'Интенсивная формула с гиалуроновой кислотой проникает в глубокие слои кожи',
+    icon: 'Droplets',
+    gradient: 'from-blue-200 via-cyan-200 to-teal-200',
+    accent: 'bg-cyan-400'
   },
   {
     id: 2,
-    title: 'Автоматизация процессов',
-    description: 'Оптимизируйте рабочие процессы и сокращайте время на рутинные операции до 70%',
-    icon: 'Zap',
-    color: 'from-blue-500 to-cyan-500'
+    title: 'Сияние молодости',
+    description: 'Витамин С и антиоксиданты возвращают коже естественное сияние и упругость',
+    icon: 'Sparkles',
+    gradient: 'from-amber-200 via-yellow-200 to-orange-200',
+    accent: 'bg-amber-400'
   },
   {
     id: 3,
-    title: 'Интеграция с системами',
-    description: 'Бесшовная интеграция с CRM, ERP и другими корпоративными решениями',
-    icon: 'Network',
-    color: 'from-cyan-500 to-teal-500'
+    title: 'Нежная текстура',
+    description: 'Легкая кремовая текстура мгновенно впитывается, не оставляя жирного блеска',
+    icon: 'Heart',
+    gradient: 'from-pink-200 via-rose-200 to-red-200',
+    accent: 'bg-rose-400'
   },
   {
     id: 4,
-    title: 'Безопасность данных',
-    description: 'Банковский уровень шифрования и соответствие международным стандартам защиты',
+    title: 'Защита 24/7',
+    description: 'SPF 30 и натуральные экстракты защищают кожу от внешних воздействий весь день',
     icon: 'Shield',
-    color: 'from-teal-500 to-green-500'
+    gradient: 'from-purple-200 via-violet-200 to-fuchsia-200',
+    accent: 'bg-purple-400'
   }
 ];
 
@@ -43,9 +47,9 @@ export default function Index() {
     if (!isPlaying) return;
 
     const sceneInterval = setInterval(() => {
-      setCurrentScene((prev) => (prev + 1) % productFeatures.length);
+      setCurrentScene((prev) => (prev + 1) % beautyFeatures.length);
       setProgress(0);
-    }, 8000);
+    }, 6000);
 
     return () => clearInterval(sceneInterval);
   }, [isPlaying]);
@@ -56,7 +60,7 @@ export default function Index() {
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) return 0;
-        return prev + (100 / 800);
+        return prev + (100 / 600);
       });
     }, 10);
 
@@ -72,136 +76,166 @@ export default function Index() {
     setProgress(0);
   };
 
-  const currentFeature = productFeatures[currentScene];
+  const currentFeature = beautyFeatures[currentScene];
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <header className="text-center mb-12 animate-fade-in">
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-primary via-purple-400 to-blue-400 bg-clip-text text-transparent">
-            Инновационное решение
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-peach-50 text-foreground overflow-hidden">
+      <div className="container mx-auto px-4 py-12 max-w-7xl">
+        <header className="text-center mb-16 animate-fade-in">
+          <div className="inline-block mb-6">
+            <div className="w-20 h-20 mx-auto bg-gradient-to-br from-pink-300 to-rose-400 rounded-full flex items-center justify-center shadow-lg">
+              <Icon name="Flower" size={40} className="text-white" />
+            </div>
+          </div>
+          <h1 className="text-6xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-pink-400 via-rose-400 to-orange-300 bg-clip-text text-transparent">
+            Luminous Glow
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground font-light">
-            для роста вашего бизнеса
+          <p className="text-2xl md:text-3xl text-muted-foreground font-light italic">
+            Красота, которую вы чувствуете
           </p>
         </header>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div 
             key={currentScene} 
-            className="animate-fade-in aspect-video bg-gradient-to-br rounded-2xl shadow-2xl flex items-center justify-center relative overflow-hidden"
-            style={{
-              backgroundImage: `linear-gradient(135deg, ${currentFeature.color.split(' ')[1]} 0%, ${currentFeature.color.split(' ')[3]} 100%)`
-            }}
+            className="relative animate-scale-in"
           >
-            <div className="absolute inset-0 bg-black/20"></div>
-            <div className="relative z-10 text-center p-8">
-              <div className="mb-6 inline-block p-6 bg-white/10 backdrop-blur-sm rounded-full">
-                <Icon name={currentFeature.icon} size={64} className="text-white" />
+            <div className="absolute inset-0 bg-gradient-to-br from-pink-200/50 to-orange-200/50 blur-3xl rounded-full"></div>
+            <div className={`relative aspect-square bg-gradient-to-br ${currentFeature.gradient} rounded-3xl shadow-2xl flex items-center justify-center overflow-hidden`}>
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
+              <div className="relative z-10 text-center p-12">
+                <div className="mb-8 inline-block">
+                  <div className="p-8 bg-white/30 backdrop-blur-md rounded-full shadow-xl">
+                    <Icon name={currentFeature.icon} size={80} className="text-white drop-shadow-lg" />
+                  </div>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">
+                  {currentFeature.title}
+                </h2>
+                <p className="text-xl md:text-2xl text-white/95 max-w-md mx-auto leading-relaxed">
+                  {currentFeature.description}
+                </p>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                {currentFeature.title}
-              </h2>
-              <p className="text-lg md:text-xl text-white/90 max-w-md mx-auto">
-                {currentFeature.description}
-              </p>
             </div>
           </div>
 
-          <div className="space-y-8 animate-scale-in">
+          <div className="space-y-10 animate-fade-in">
             <div>
-              <h3 className="text-3xl font-semibold mb-4">Возможности продукта</h3>
-              <p className="text-lg text-muted-foreground mb-6">
-                Откройте новые горизонты эффективности с нашим комплексным решением для корпоративного сектора
+              <h3 className="text-4xl font-semibold mb-4 text-foreground">Секрет сияющей кожи</h3>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Инновационная формула, созданная с любовью к вашей коже. 
+                Каждый ингредиент тщательно отобран для максимального эффекта.
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              {productFeatures.map((feature, index) => (
+              {beautyFeatures.map((feature, index) => (
                 <button
                   key={feature.id}
                   onClick={() => handleSceneChange(index)}
-                  className={`p-4 rounded-xl border-2 transition-all duration-300 text-left hover:scale-105 ${
+                  className={`group p-6 rounded-2xl border-2 transition-all duration-500 text-left ${
                     currentScene === index
-                      ? 'border-primary bg-primary/10 shadow-lg shadow-primary/20'
-                      : 'border-border bg-card/50 hover:border-primary/50'
+                      ? 'border-pink-300 bg-gradient-to-br from-pink-50 to-rose-50 shadow-xl scale-105'
+                      : 'border-border bg-white hover:border-pink-200 hover:shadow-lg'
                   }`}
                 >
-                  <Icon name={feature.icon} size={32} className={currentScene === index ? 'text-primary' : 'text-muted-foreground'} />
-                  <h4 className="font-semibold mt-2 text-sm">
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 transition-all duration-300 ${
+                    currentScene === index ? currentFeature.accent : 'bg-gray-100 group-hover:bg-pink-100'
+                  }`}>
+                    <Icon 
+                      name={feature.icon} 
+                      size={24} 
+                      className={currentScene === index ? 'text-white' : 'text-muted-foreground group-hover:text-pink-400'} 
+                    />
+                  </div>
+                  <h4 className={`font-semibold text-base transition-colors ${
+                    currentScene === index ? 'text-pink-600' : 'text-foreground'
+                  }`}>
                     {feature.title}
                   </h4>
                 </button>
               ))}
             </div>
 
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
+            <div className="space-y-4 pt-4">
+              <div className="flex items-center gap-6">
                 <Button
                   onClick={handlePlayPause}
-                  variant="outline"
                   size="icon"
-                  className="h-12 w-12 rounded-full"
+                  className="h-14 w-14 rounded-full bg-gradient-to-br from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 shadow-lg"
                 >
-                  <Icon name={isPlaying ? 'Pause' : 'Play'} size={20} />
+                  <Icon name={isPlaying ? 'Pause' : 'Play'} size={24} className="text-white" />
                 </Button>
                 <div className="flex-1">
-                  <div className="h-2 bg-muted rounded-full overflow-hidden">
+                  <div className="h-3 bg-pink-100 rounded-full overflow-hidden shadow-inner">
                     <div
-                      className="h-full bg-gradient-to-r from-primary to-purple-400 transition-all duration-100"
+                      className="h-full bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400 transition-all duration-100 shadow-lg"
                       style={{ width: `${progress}%` }}
                     ></div>
                   </div>
                 </div>
-                <span className="text-sm text-muted-foreground font-mono">
-                  {currentScene + 1} / {productFeatures.length}
+                <span className="text-base text-muted-foreground font-medium min-w-[3rem] text-right">
+                  {currentScene + 1} / {beautyFeatures.length}
                 </span>
               </div>
             </div>
           </div>
         </div>
 
-        <section className="animate-slide-up">
-          <h3 className="text-3xl font-semibold text-center mb-8">Преимущества партнёрства</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary transition-all duration-300 hover:scale-105">
-              <Icon name="Users" size={48} className="text-primary mb-4" />
-              <h4 className="text-xl font-semibold mb-2">Поддержка 24/7</h4>
-              <p className="text-muted-foreground">
-                Выделенная команда экспертов для решения любых вопросов в режиме реального времени
+        <section className="mb-20 animate-slide-up">
+          <h3 className="text-4xl font-semibold text-center mb-12 text-foreground">Почему нас выбирают</h3>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="p-8 bg-white/80 backdrop-blur-sm border-pink-100 hover:border-pink-300 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 rounded-2xl">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-300 to-emerald-400 flex items-center justify-center mb-6 shadow-lg">
+                <Icon name="Leaf" size={32} className="text-white" />
+              </div>
+              <h4 className="text-2xl font-semibold mb-3 text-foreground">100% натурально</h4>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                Только природные ингредиенты высочайшего качества без парабенов и силиконов
               </p>
             </Card>
-            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary transition-all duration-300 hover:scale-105">
-              <Icon name="Rocket" size={48} className="text-primary mb-4" />
-              <h4 className="text-xl font-semibold mb-2">Быстрый запуск</h4>
-              <p className="text-muted-foreground">
-                Внедрение за 14 дней с полным обучением команды и технической документацией
+            <Card className="p-8 bg-white/80 backdrop-blur-sm border-pink-100 hover:border-pink-300 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 rounded-2xl">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-300 to-cyan-400 flex items-center justify-center mb-6 shadow-lg">
+                <Icon name="TestTube" size={32} className="text-white" />
+              </div>
+              <h4 className="text-2xl font-semibold mb-3 text-foreground">Протестировано</h4>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                Дерматологически одобрено и проверено на всех типах кожи
               </p>
             </Card>
-            <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary transition-all duration-300 hover:scale-105">
-              <Icon name="BarChart" size={48} className="text-primary mb-4" />
-              <h4 className="text-xl font-semibold mb-2">ROI +300%</h4>
-              <p className="text-muted-foreground">
-                Средний рост эффективности наших клиентов в первый год использования платформы
+            <Card className="p-8 bg-white/80 backdrop-blur-sm border-pink-100 hover:border-pink-300 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 rounded-2xl">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-300 to-rose-400 flex items-center justify-center mb-6 shadow-lg">
+                <Icon name="Award" size={32} className="text-white" />
+              </div>
+              <h4 className="text-2xl font-semibold mb-3 text-foreground">№1 в мире</h4>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                Признано лучшим средством по уходу за кожей по версии Beauty Awards 2024
               </p>
             </Card>
           </div>
         </section>
 
-        <section className="mt-16 text-center animate-fade-in">
-          <div className="inline-block p-8 rounded-2xl bg-gradient-to-br from-primary/20 to-purple-500/20 backdrop-blur-sm border border-primary/30">
-            <h3 className="text-3xl font-semibold mb-4">Готовы к сотрудничеству?</h3>
-            <p className="text-lg text-muted-foreground mb-6 max-w-2xl">
-              Присоединяйтесь к 500+ компаниям, которые уже трансформировали свой бизнес
+        <section className="text-center animate-fade-in">
+          <div className="inline-block p-12 rounded-3xl bg-gradient-to-br from-pink-100/80 via-rose-100/80 to-orange-100/80 backdrop-blur-sm border-2 border-pink-200 shadow-2xl">
+            <h3 className="text-4xl font-semibold mb-6 text-foreground">Попробуйте сегодня</h3>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+              Специальное предложение: скидка 30% на первый заказ + бесплатная доставка
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/50">
-                <Icon name="Calendar" size={20} className="mr-2" />
-                Запланировать демо
+            <div className="flex gap-6 justify-center flex-wrap">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-lg px-8 py-6 rounded-full"
+              >
+                <Icon name="ShoppingBag" size={24} className="mr-2" />
+                Купить сейчас
               </Button>
-              <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
-                <Icon name="FileText" size={20} className="mr-2" />
-                Скачать презентацию
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 border-pink-300 text-pink-600 hover:bg-pink-50 text-lg px-8 py-6 rounded-full hover:scale-105 transition-all duration-300"
+              >
+                <Icon name="Info" size={24} className="mr-2" />
+                Узнать больше
               </Button>
             </div>
           </div>
